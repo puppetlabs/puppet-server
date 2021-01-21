@@ -12,7 +12,7 @@ if [ -e "$cli_defaults" ]; then
   fi
 fi
 
-"${JAVA_BIN}" $JAVA_ARGS_CLI -Djava.security.egd=file:/dev/urandom \
+"${JAVA_BIN}" $TMPPATH $JAVA_ARGS_CLI -Djava.security.egd=file:/dev/urandom \
     -cp "$CLASSPATH" \
     clojure.main -m puppetlabs.puppetserver.cli.ruby \
     --config "${CONFIG}" -- "$@"

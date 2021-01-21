@@ -110,7 +110,8 @@
                        :build-type "foss"
                        :java-args ~(str "-Xms2g -Xmx2g "
                                      "-Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger")
-                       :create-dirs ["/opt/puppetlabs/server/data/puppetserver/jars"]
+                       :create-dirs ["/opt/puppetlabs/server/data/puppetserver/jars",
+                                     "/opt/puppetlabs/server/apps/puppetserver/tmp"]
                        :repo-target "puppet5"
                        :nonfinal-repo-target "puppet5-nightly"
                        :bootstrap-source :services-d

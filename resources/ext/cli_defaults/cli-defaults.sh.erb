@@ -8,3 +8,4 @@ if [ ! -e "$JRUBY_JAR" ]; then
 fi
 
 CLASSPATH="${CLASSPATH}:${JRUBY_JAR}:/opt/puppetlabs/server/data/<%= EZBake::Config[:real_name] %>/jars/*"
+TMPPATH="-Djava.io.tmpdir=/opt/puppetlabs/server/apps/<%= EZBake::Config[:real_name] %>/tmp"
