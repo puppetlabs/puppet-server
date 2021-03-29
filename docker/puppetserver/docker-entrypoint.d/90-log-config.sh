@@ -5,9 +5,15 @@ echo "System configuration values:"
 # shellcheck disable=SC2039 # Docker injects $HOSTNAME
 echo "* HOSTNAME: '${HOSTNAME}'"
 echo "* hostname -f: '$(hostname -f)'"
-echo "* PUPPETSERVER_HOSTNAME:PUPPET_MASTERPORT: '${PUPPETSERVER_HOSTNAME}:${PUPPET_MASTERPORT}'"
-certname=$(ls "${SSLDIR}/certs" | grep --invert-match ca.pem)
-echo "* Generated certname: '${certname}'"
+if test -n "${PUPPETSERVER_HOSTNAME}"; then
+  echo "* PUPPETSERVER_HOSTNAME: '${PUPPETSERVER_HOSTNAME}'"
+  certname=${PUPPETSERVER_HOSTNAME}.pem
+else
+  echo "* PUPPETSERVER_HOSTNAME: unset"
+  certname=$(ls "${SSLDIR}/certs" | grep --invert-match ca.pem)
+fi
+echo "* PUPPET_MASTERPORT: '${PUPPET_MASTERPORT}'"
+echo "* Certname: '${certname}'"
 echo "* DNS_ALT_NAMES: '${DNS_ALT_NAMES}'"
 echo "* SSLDIR: '${SSLDIR}'"
 
