@@ -2,6 +2,8 @@ version: '3.5'
 
 services:
   puppet:
+    # NOTE: if this service changes, global shared definition should be updated
+    # https://github.com/puppetlabs/pupperware/blob/main/gem/lib/pupperware/compose-services/puppet.yml
     hostname: puppet
     image: ${PUPPET_TEST_DOCKER_IMAGE:-puppet/puppetserver}
     expose:
