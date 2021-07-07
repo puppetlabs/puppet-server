@@ -50,6 +50,10 @@ The following environment variables are supported:
 If you would like to do additional initialization, add a directory called `/docker-custom-entrypoint.d/` and fill it with `.sh` scripts.
 These scripts will be executed at the end of the entrypoint script, before the service is ran.
 
+## Persistance 
+
+If you plan to use the in-server CA, restarting the container can cause the server's keys and certificates to change, causing agents and the server to stop trusting each other. To prevent this, you can persist the default ssldir, `/etc/puppetlabs/puppet/ssl`. For example, `docker run -v $PWD/ca-ssl:/etc/puppetlabs/puppet/ssl puppetlabs/puppetserver:latest`.
+
 ## Analytics Data Collection
 
 The puppetserver container collects usage data. This is disabled by default. You can enable it by passing `--env PUPPERWARE_ANALYTICS_ENABLED=true`
