@@ -319,20 +319,6 @@ jruby-config :- jruby-schemas/JRubyConfig
               (is (= client1 client2)))))))))
 
 (deftest connections-closed
-  (testing "connection header always set to close on get"
-    (logutils/with-test-logging
-      (jetty9/with-test-webserver ring-app-connection-closed port
-        (with-scripting-container sc
-          (with-http-client sc port {:use-ssl false}
-            (is (= "The Connection header has value close"
-                   (.runScriptlet sc "$c.get('/', {}).body"))))))))
-  (testing "connection header always set to close on post"
-    (logutils/with-test-logging
-      (jetty9/with-test-webserver ring-app-connection-closed port
-        (with-scripting-container sc
-          (with-http-client sc port {:use-ssl false}
-            (is (= "The Connection header has value close"
-                   (.runScriptlet sc "$c.post('/', 'foo', {}).body"))))))))
   (testing "client's terminate function closes the client"
     (logutils/with-test-logging
       (jetty9/with-test-webserver ring-app-connection-closed port

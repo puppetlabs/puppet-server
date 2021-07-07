@@ -94,8 +94,6 @@ class Puppet::Server::HttpClient
       headers["Authorization"] = authorization
     end
 
-    # Ensure multiple requests are not made on the same connection
-    headers["Connection"] = "close"
     request_options = RequestOptions.new(build_url(url))
     if options[:metric_id]
       request_options.set_metric_id(options[:metric_id])
